@@ -9,40 +9,41 @@
 #define OPERACIONES_H_
 
 /*
- * Funciom que calcula el factorial de a
+ * Funcion que calcula el factorial de a
  * \param a int a ser factorizado
- * retorna el valor devuelto por la recursion, si el numero es menor a 2 y mayor o igual a 0, devuelve 1
+ * retorna el valor devuelto por la recursion, si el numero es menor a 2 y mayor o igual a 0, devuelve 1.
+ * Si el numero es negativo, devuelve -1
  */
 int factorial(int a);
 
 /*
  * Funciom que calcula la suma de a y b
- * \param int a
- * \param int b
+ * \param int a numero a ser utilizado para calcular 
+ * \param int b numero a ser utilizado para calcular 
  * retorna el valor devuelto por la suma de a y b
  */
 int suma(int a, int b);
 
 /*
  * Funciom que calcula la resta entre a y b
- * \param int a
- * \param int b
+ * \param int a numero a ser utilizado para calcular 
+ * \param int b numero a ser utilizado para calcular 
  * retorna el valor devuelto por la resta de a y b
  */
 int resta(int a, int b);
 
 /*
  * Funciom que calcula la multiplicacion de a y b
- * \param int a
- * \param int b
+ * \param int a numero a ser utilizado para calcular 
+ * \param int b numero a ser utilizado para calcular 
  * retorna el valor devuelto por la multiplicacion de a y b
  */
 int multiplicacion(int a, int b);
 
 /*
  * Funciom que calcula la division de a y b
- * \param int a
- * \param int b
+ * \param int a numero a ser utilizado para calcular 
+ * \param int b numero a ser utilizado para calcular 
  * retorna el valor devuelto por la division de a y b
  */
 float division(int a, int b);
