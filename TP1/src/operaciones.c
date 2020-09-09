@@ -7,36 +7,38 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int suma(int a, int b){
-	return a+b;
+int suma(int a, int b, int* resultado){
+	*resultado = a+b;
+	return *resultado;
 }
 
-int resta(int a, int b){
-	return a-b;
+int resta(int a, int b, int* resultado){
+	*resultado = a-b;
+	return *resultado;
 }
 
-int multiplicacion(int a, int b){
+int multiplicacion(int a, int b, int* resultado){
+	*resultado = a*b;
 	return a*b;
 
 }
 
-float division(int a, int b){
-	float retorno = -1;
+float division(int a, int b, float* resultado){
 	if(b != 0){
-		retorno = (float)a/b;
+		*resultado = (float)a/b;
 	}
-	return retorno;
+	return *resultado;
 }
 
-int factorial(int a){
-	int retorno = -1;
+int factorial(int a, int* resultado){
+	*resultado = -1;
 	if(a >= 0){
 		if (a < 2) {
-			retorno = 1;
+			*resultado = 1;
 		} else {
-			retorno = a * factorial(a - 1);
+			*resultado = a * factorial(a - 1, resultado);
 		}
 	}
-	return retorno;
+	return *resultado;
 }
 

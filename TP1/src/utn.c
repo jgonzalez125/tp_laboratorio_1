@@ -72,20 +72,15 @@ int utn_getNumero(int* pResultado, char* mensaje, char* mensajeError, int minimo
 	if(pResultado != NULL && mensaje != NULL && mensajeError != NULL && minimo <= maximo && reintentos >= 0){
 		while(reintentos > 0){
 			printf("%s", mensaje);
-			if(getInt(&bufferInt) == 1){
-				if(bufferInt <= maximo && bufferInt >= minimo){
-					break;
-				}
-				fpurge(stdin);
+			if(getInt(&bufferInt) == 1 && bufferInt <= maximo && bufferInt >= minimo){
+				*pResultado = bufferInt;
+				retorno = 0;
+				break;
+			}else{
 				reintentos--;
 				printf("%s", mensajeError);
+				fpurge(stdin);
 			}
-		}
-		if(reintentos == 0){
-			retorno = -1;
-		}else{
-			retorno = 0;
-			*pResultado = bufferInt;
 		}
 	}
 	return retorno;

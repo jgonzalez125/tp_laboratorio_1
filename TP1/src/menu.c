@@ -18,10 +18,8 @@ void menu(){
 	int resultadoMultiplicacion;
 	int resultadoFactorialUno;
 	int resultadoFactorialDos;
-	float resultadoDiv;
-	int resultadoUno;
-	int resultadoDos;
 	int valorOpcion;
+	float resultadoDiv;
 
 
 	do{
@@ -33,18 +31,20 @@ void menu(){
 									"\n5)Salir\n", "\nError", 1, 5, 3)){
 			switch(opcion){
 			case 1:
-				resultadoUno = utn_getNumero(&num1, "\nIngrese operador:", "\nIngrese operando:", -1000, 1000000, 3);
-				valorOpcion = opcion;
-				//opcion 1
+				if(!utn_getNumero(&num1, "\nIngrese operador:", "\nError", -1000, 1000000, 3)){
+					printf("\nPrimer operando cargado");
+					valorOpcion = opcion;
+				}
 				break;
 			case 2:
 				if(valorOpcion != 1){
 					printf("\nDebe ingresar el primer operando");
 				}else{
-					resultadoDos = utn_getNumero(&num2, "\nIngrese operador:", "\nIngrese operando:", -1000, 1000000, 3);
-					valorOpcion = opcion;
+					if(!utn_getNumero(&num2, "\nIngrese operador:", "\nIngrese operando:", -1000, 1000000, 3)){
+						printf("\nSegundo operando cargado");
+						valorOpcion = opcion;
+					}
 				}
-				//opcion 2
 				break;
 			case 3:
 				if(valorOpcion != 2){
@@ -52,13 +52,13 @@ void menu(){
 				}else{
 					printf("\nCalculando...");
 					valorOpcion = opcion;
-					resultadoSuma = suma(num1, num2);
-					resultadoResta = resta(num1, num2);
-					resultadoMultiplicacion = multiplicacion(num1, num2);
-					resultadoFactorialUno = factorial(num1);
-					resultadoFactorialDos = factorial(num2);
+					suma(num1, num2, &resultadoSuma);
+					resta(num1, num2, &resultadoResta);
+					multiplicacion(num1, num2, &resultadoMultiplicacion);
+					factorial(num1, &resultadoFactorialUno);
+					factorial(num2, &resultadoFactorialDos);
 					if(num2 != 0){
-						resultadoDiv = division(num1, num2);
+						division(num1, num2, &resultadoDiv);
 					}else{
 						printf("\nNo se puede dividir por 0");
 					}
@@ -69,7 +69,6 @@ void menu(){
 						printf("\nEl numero %d es menor a 0, no se puede hacer factorial, resultado por defecto -1", num2);
 					}
 				}
-				//opcion 3
 				break;
 			case 4:
 				if(valorOpcion != 3 && valorOpcion != 4){
@@ -83,16 +82,13 @@ void menu(){
 								"\nDivision: SYNTAX ERROR"
 								"\nFactorial %d: %d"
 								"\nFactorial %d: %d\n", resultadoSuma, resultadoResta, resultadoMultiplicacion, num1, resultadoFactorialUno, num2, resultadoFactorialDos);
-						//opcion 4
 					}else{
-
 						printf("\nSuma: %d"
 								"\nResta: %d"
 								"\nMultiplicacion: %d"
 								"\nDivision: %.2f"
 								"\nFactorial %d: %d"
 								"\nFactorial %d: %d\n", resultadoSuma, resultadoResta, resultadoMultiplicacion, resultadoDiv, num1, resultadoFactorialUno, num2, resultadoFactorialDos);
-						//opcion 4
 					}
 				}
 				break;
