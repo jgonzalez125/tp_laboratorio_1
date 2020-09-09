@@ -76,19 +76,19 @@ void menu(){
 				}else{
 					valorOpcion = opcion;
 					if(num2 == 0){
-						printf("\nSuma: %d"
-								"\nResta: %d"
-								"\nMultiplicacion: %d"
+						printf("\nEl resultado de %d+%d es: %d"
+								"\nEl resultado de %d-%d es: %d"
+								"\nEl resultado de %d*%d es: %d"
 								"\nDivision: SYNTAX ERROR"
-								"\nFactorial %d: %d"
-								"\nFactorial %d: %d\n", resultadoSuma, resultadoResta, resultadoMultiplicacion, num1, resultadoFactorialUno, num2, resultadoFactorialDos);
+								"\nEl factorial de %d es: %d"
+								"\nY el factorial de %d es: %d\n",num1, num2, resultadoSuma, num1, num2, resultadoResta, num1, num2, resultadoMultiplicacion, num1, resultadoFactorialUno, num2, resultadoFactorialDos);
 					}else{
-						printf("\nSuma: %d"
-								"\nResta: %d"
-								"\nMultiplicacion: %d"
-								"\nDivision: %.2f"
-								"\nFactorial %d: %d"
-								"\nFactorial %d: %d\n", resultadoSuma, resultadoResta, resultadoMultiplicacion, resultadoDiv, num1, resultadoFactorialUno, num2, resultadoFactorialDos);
+						printf("\nEl resultado de %d+%d es: %d"
+								"\nEl resultado de %d-%d es: %d"
+								"\nEl resultado de %d*%d es: %d"
+								"\nEl resultado de %d/%d es: %.2f"
+								"\nEl factorial de %d es: %d"
+								"\nY el factorial de %d es: %d\n", num1, num2, resultadoSuma, num1, num2, resultadoResta, num1, num2, resultadoMultiplicacion, num1, num2, resultadoDiv, num1, resultadoFactorialUno, num2, resultadoFactorialDos);
 					}
 				}
 				break;
