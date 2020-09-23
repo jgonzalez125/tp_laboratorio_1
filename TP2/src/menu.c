@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include "utn.h"
 #include "empleado.h"
-#define CANTIDAD_EMPLEADOS 100
+#define CANTIDAD_EMPLEADOS 1000
 
 void menu() {
 	Empleado arrayEmpleado[CANTIDAD_EMPLEADOS];

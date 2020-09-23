@@ -230,8 +230,9 @@ float emp_calcularPromedio(Empleado *array, int limite, int contadorEmpleados) {
 	int acumulador = 0;
 	if (array != NULL && limite > 0) {
 		for (int i = 0; i < limite; i++) {
-			if (array[i].isEmpty && array[i + 1].isEmpty)
+			if (array[i].isEmpty && array[i + 1].isEmpty){
 				continue;
+			}
 			acumulador = acumulador + array[i].salario;
 		}
 		retorno = (float) acumulador / contadorEmpleados;
@@ -246,7 +247,7 @@ int emp_superaPromedio(Empleado *array, int limite, int contadorEmpleados) {
 	if (array != NULL && limite > 0) {
 		respuesta = emp_calcularPromedio(array, limite, contadorEmpleados);
 		for (int i = 0; i < limite; i++) {
-			if (array[i].isEmpty && array[i + 1].isEmpty)
+			if (array[i].isEmpty)
 				continue;
 			if (array[i].salario > respuesta) {
 				contador++;
