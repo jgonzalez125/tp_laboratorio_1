@@ -54,7 +54,7 @@ int emp_initArray(Empleado *array, int longitud) {
 	return retorno;
 }
 
-int emp_getEmptyIndex(Empleado *array, int longitud) {
+int emp_encontrarIndiceVacio(Empleado *array, int longitud) {
 	int retorno = -1;
 
 	if (array != NULL && longitud > 0) {
@@ -62,19 +62,6 @@ int emp_getEmptyIndex(Empleado *array, int longitud) {
 			if (array[i].isEmpty == 1) {
 				retorno = i;
 				break;
-			}
-		}
-	}
-	return retorno;
-}
-
-int emp_todoVacio(Empleado *array, int longitud) {
-	int retorno = 1;
-
-	if (array != NULL && longitud > 0) {
-		for (int i = 0; i < longitud; i++) {
-			if (array[i].isEmpty == 0) {
-				retorno = 0;
 			}
 		}
 	}

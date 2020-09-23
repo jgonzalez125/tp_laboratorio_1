@@ -1,10 +1,11 @@
 /*
  ============================================================================
  Name        : utn_tp2_laboratorio.c
- Author      : juampi
+ Author      : Gonzalez Conti Juan Pablo
  Version     :
  Copyright   : Your copyright notice
- Description : Hello World in C, Ansi-style
+ Description : Trabajo practico numero 2 de la materia laboratorio 1.
+ 	 	 	   Segundo cuatrimestre 2020
  ============================================================================
  */
 

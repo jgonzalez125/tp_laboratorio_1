@@ -31,9 +31,9 @@ int emp_altaForzada(Empleado *array, int longitud, int indice, char* nombre, cha
 int emp_cargarArray(Empleado* array, int longitud, int indice, int* id);
 
 /*
- * \brief Funcion para imprimir un valor
+ * \brief Funcion para imprimir un empleado
  *
- * \param pProducto puntero a la direccion de memoria del empleado a ser inicializado
+ * \param pProducto puntero a la direccion de memoria del empleado a ser impreso
  */
 int emp_imprimir(Empleado* array);
 
@@ -49,7 +49,7 @@ int emp_imprimirArray(Empleado* array, int longitud);
 /*
  * \brief Funcion para eliminar un indice seteando el campo isEmpty en 1 (TRUE)
  *
- * \param pProducto puntero a la direccion de memoria del indice a ser eliminado
+ * \param pProducto puntero a la direccion de memoria del indice de empleado a ser eliminado
  * \param longitud tamanio del array de Empleado
  * \param indice indice a ser buscado
  */
@@ -97,17 +97,7 @@ int emp_initArray(Empleado* array, int longitud);
  *
  * \return retorna el indice vacio, -1 if ERROR
  */
-int emp_getEmptyIndex(Empleado* array, int longitud);
-
-/*
- * \brief Funcion para chequear que el array este completamente vacio
- *
- * \param array puntero a la direccion de memoria del empleado
- * \param longitud tamanio del array de Empleado
- *
- * \return retorna el indice vacio, -1 if ERROR
- */
-int emp_todoVacio(Empleado* array, int longitud);
+int emp_encontrarIndiceVacio(Empleado* array, int longitud);
 
 /*
  * \brief Funcion para calcular el salario promedio entre todos los empleados

@@ -13,6 +13,7 @@
 void menu() {
 	Empleado arrayEmpleado[CANTIDAD_EMPLEADOS];
 	int opcion;
+	int dioDeAlta = 0;
 	int contadorIds = 0;
 	int auxiliarId;
 	float respuestaPromedios;
@@ -27,6 +28,7 @@ void menu() {
 	 * emp_altaForzada(arrayEmpleado, CANTIDAD_EMPLEADOS, 0, "Juan", "Gonzalez", 30000, 1, &contadorIds);
 	 * emp_altaForzada(arrayEmpleado, CANTIDAD_EMPLEADOS, 1, "Pedro", "Lopez", 30000, 2, &contadorIds);
 	 * emp_altaForzada(arrayEmpleado, CANTIDAD_EMPLEADOS, 2, "Laura", "Alvarez", 30000, 3, &contadorIds);
+	 * dioDeAlta = 1;
 	 * ================================== Funciones de prueba ==========================================
 	 */
 
@@ -40,26 +42,26 @@ void menu() {
 						"\n  1. Listado de los empleados ordenados alfabeticamente por apellido y sector"
 						"\n  2. Total y promedio de los salarios, y cuantos empleados superan el salario promedio"
 						"\n5)Salir\n", "\nError", 1, 5, 3)) {
-			if ((opcion > 1 && opcion < 5)
-					&& emp_todoVacio(arrayEmpleado, CANTIDAD_EMPLEADOS) == 1) {
-				printf("\nDebe ingresar al menos un empleado");
-				continue;
-			}
 			switch (opcion) {
 			case 1:
 				//opcion 1
-				if (emp_getEmptyIndex(arrayEmpleado, CANTIDAD_EMPLEADOS) >= 0) {
+				if (emp_encontrarIndiceVacio(arrayEmpleado, CANTIDAD_EMPLEADOS) >= 0) {
 					if (emp_cargarArray(arrayEmpleado, CANTIDAD_EMPLEADOS,
-							emp_getEmptyIndex(arrayEmpleado,
+							emp_encontrarIndiceVacio(arrayEmpleado,
 									CANTIDAD_EMPLEADOS), &contadorIds) == 0) {
 						printf("\nCarga realizada exitosamente");
 					}
+					dioDeAlta = 1;
 				} else {
 					printf("\nSe quedo sin espacios");
 				}
 				break;
 			case 2:
 				//opcion 2
+				if(dioDeAlta != 1){
+					printf("\nDebe ingresar al menos un empleado");
+					continue;
+				}
 				emp_imprimirArray(arrayEmpleado, CANTIDAD_EMPLEADOS);
 				if (!utn_getNumero(&auxiliarId,
 						"\nIngrese id de empleado a ser modificado:", "\nError",
@@ -75,6 +77,10 @@ void menu() {
 				break;
 			case 3:
 				//opcion 3
+				if(dioDeAlta != 1){
+					printf("\nDebe ingresar al menos un empleado");
+					continue;
+				}
 				emp_imprimirArray(arrayEmpleado, CANTIDAD_EMPLEADOS);
 				if (!utn_getNumero(&auxiliarId,
 						"\nIngrese id de empleado a ser eliminado:", "\nError",
@@ -90,6 +96,10 @@ void menu() {
 				break;
 				//opcion 4
 			case 4:
+				if(dioDeAlta != 1){
+					printf("\nDebe ingresar al menos un empleado");
+					continue;
+				}
 				if (!utn_getNumero(&opcion,
 						"\n1.Listado de los empleados ordenados por apellido y sector"
 						"\n2.Total y promedio de salarios, y cuantos superan el promedio",
