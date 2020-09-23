@@ -7,7 +7,7 @@
 
 #ifndef EMPLEADO_H_
 #define EMPLEADO_H_
-#define NOMBRE_LEN 100
+#define NOMBRE_LEN 51
 
 typedef struct {
 	int id;
