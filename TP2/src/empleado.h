@@ -23,25 +23,31 @@ int emp_altaForzada(Empleado *array, int longitud, int indice, char* nombre, cha
 /*
  * \brief Funcion para cargar un array de empleados
  *
- * \param pProducto puntero a la direccion de memoria del empleado a ser cargado
- * \param longitud tamanio del array de Producto
+ * \param array puntero a la direccion de memoria del empleado a ser cargado
+ * \param longitud tamanio del array de Empleado
  * \param indice indice a ser cargado
  * \param id puntero a la direccion de memoria del id a ser autoincrementado
+ * 
+ * \return retorna 0 if CARGA OK -1 if ERROR
  */
 int emp_cargarArray(Empleado* array, int longitud, int indice, int* id);
 
 /*
  * \brief Funcion para imprimir un empleado
  *
- * \param pProducto puntero a la direccion de memoria del empleado a ser impreso
+ * \param array puntero a la direccion de memoria del empleado a ser impreso
+ * 
+ * \return retorna 0 if OK -1 if ERROR
  */
 int emp_imprimir(Empleado* array);
 
 /*
  * \brief Funcion para imprimir un array
  *
- * \param pProducto puntero a la direccion de memoria del array cliente a ser impreso
+ * \param array puntero a la direccion de memoria del array empleado a ser impreso
  * \param longitud longitud del array a ser impreso
+ * 
+ * \return retorna 0 if OK -1 if error
  */
 int emp_imprimirArray(Empleado* array, int longitud);
 
@@ -49,50 +55,60 @@ int emp_imprimirArray(Empleado* array, int longitud);
 /*
  * \brief Funcion para eliminar un indice seteando el campo isEmpty en 1 (TRUE)
  *
- * \param pProducto puntero a la direccion de memoria del indice de empleado a ser eliminado
+ * \param array puntero a la direccion de memoria del indice de empleado a ser eliminado
  * \param longitud tamanio del array de Empleado
  * \param indice indice a ser buscado
+ * 
+ * \return retorna 0 if BAJA OK -1 if ERROR
  */
 int emp_bajaArray(Empleado* array, int longitud, int indice);
 
 /*
- * \brief Funcion para encontrar un cliente por id
+ * \brief Funcion para encontrar un empleado por id
  *
  * \param array puntero a la direccion de memoria del array
  * \param longitud tamanio del array de Empleado
- * \param idBuscado id del cliente a ser buscado
+ * \param idBuscado id del empleado a ser buscado
+ * 
+ * \return retorna el indice encontrado if OK -1 if ERROR
  */
 int emp_buscarId(Empleado* array, int limite, int idBuscado);
 
 /*
- * \brief Funcion para modificar un campo del cliente
+ * \brief Funcion para modificar un campo del empleado
  *
- * \param pProducto puntero a la direccion de memoria del cliente a ser modificado
+ * \param array puntero a la direccion de memoria del empleado a ser modificado
  * \param longitud tamanio del array de Empleado
  * \param indice indice a ser buscado
+ * 
+ * \return retorna 0 if OK -1 if error
  */
 int emp_modificarArray(Empleado* array, int longitud, int indice);
 
 /*
  * \brief Funcion para ordenar por nombre y/o altura de menor a mayor
  *
- * \param array puntero a la direccion de memoria del cliente a ser inicializado
+ * \param array puntero a la direccion de memoria del empleado a ser inicializado
  * \param longitud tamanio del array de Empleado
+ * 
+ * \return retorna 0 if OK -1 if error
  */
 int emp_ordenarPorApellidoSector(Empleado* array, int limite);
 
 /*
  * \brief Funcion para inicializar un array Empleado poniendo el campo isEmpty en TRUE (1)
  *
- * \param array puntero a la direccion de memoria del cliente a ser inicializado
+ * \param array puntero a la direccion de memoria del empleado a ser inicializado
  * \param longitud tamanio del array de Empleado
+ * 
+ * \return retorna 0 if OK -1 if error
  */
 int emp_initArray(Empleado* array, int longitud);
 
 /*
  * \brief Funcion para chequear el primer indice que se encuentre vacio
  *
- * \param array puntero a la direccion de memoria del empleado
+ * \param array puntero a la direccion de memoria del array de Empleado
  * \param longitud tamanio del array de Empleado
  *
  * \return retorna el indice vacio, -1 if ERROR
@@ -106,16 +122,18 @@ int emp_encontrarIndiceVacio(Empleado* array, int longitud);
  * \param longitud tamanio del array de Empleado
  * \param contadorEmpleados cantidad de empleados cargados
  *
- * \return retorna el indice vacio, -1 if ERROR
+ * \return retorna el promedio de salarios if OK, -1 if ERROR
  */
 float emp_calcularPromedio(Empleado* array, int limite, int contadorEmpleados);
 
 /*
  * \brief Funcion para calcular cuantos empleados superan el salario promedio
+ * 
  * \param array puntero a la direccion de memoria del array de empleados
  * \param longitud tamanio del array de Empleado
  * \param contadorEmpleados cantidad de empleados cargados
- * \return retorna el indice vacio, -1 if ERROR
+ * 
+ * \return retorna la cantidad de empleados que superan el promedio de salarios if OK, -1 if ERROR
  */
 int emp_superaPromedio(Empleado* array, int limite, int contadorEmpleados);
 
