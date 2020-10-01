@@ -19,7 +19,23 @@ typedef struct {
 }Empleado;
 
 
+
+/*
+ * \brief Funcion de testeo para cargar forzadamente una posicion del array de empleados
+ *
+ * \param array puntero a la direccion de memoria al array de empleados
+ * \param longitud tamanio del array de Empleado
+ * \param indice indice a ser cargado
+ * \param char* nombre puntero al array de caracteres del nombre a ser cargado
+ * \param char* apellido puntero al array de caracteres del apellido a ser cargado
+ * \param float salario numero flotante del salario a ser cargado 
+ * \param int sector numero int del sector a ser cargado
+ * \param id puntero a la direccion de memoria del id a ser autoincrementado
+ * 
+ * \return retorna 0 if CARGA OK -1 if ERROR
+ */
 int emp_altaForzada(Empleado *array, int longitud, int indice, char* nombre, char* apellido, float salario, int sector, int* id);
+
 /*
  * \brief Funcion para cargar un array de empleados
  *
