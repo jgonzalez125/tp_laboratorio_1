@@ -136,21 +136,19 @@ int emp_encontrarIndiceVacio(Empleado* array, int longitud);
  *
  * \param array puntero a la direccion de memoria del array de empleados
  * \param longitud tamanio del array de Empleado
- * \param contadorEmpleados cantidad de empleados cargados
  *
  * \return retorna el promedio de salarios if OK, -1 if ERROR
  */
-float emp_calcularPromedio(Empleado* array, int limite, int contadorEmpleados);
+float emp_calcularPromedio(Empleado* array, int limite);
 
 /*
  * \brief Funcion para calcular cuantos empleados superan el salario promedio
  * 
  * \param array puntero a la direccion de memoria del array de empleados
  * \param longitud tamanio del array de Empleado
- * \param contadorEmpleados cantidad de empleados cargados
  * 
  * \return retorna la cantidad de empleados que superan el promedio de salarios if OK, -1 if ERROR
  */
-int emp_superaPromedio(Empleado* array, int limite, int contadorEmpleados);
+int emp_superaPromedio(Empleado* array, int limite);
 
 #endif /* EMPLEADO_H_ */

@@ -225,27 +225,30 @@ int emp_buscarId(Empleado *array, int limite, int idBuscado) {
 	return retorno;
 }
 
-float emp_calcularPromedio(Empleado *array, int limite, int contadorEmpleados) {
+float emp_calcularPromedio(Empleado *array, int limite) {
 	float retorno = -1;
 	int acumulador = 0;
+	int contador = 0;
 	if (array != NULL && limite > 0) {
 		for (int i = 0; i < limite; i++) {
-			if (array[i].isEmpty && array[i + 1].isEmpty){
+			if (!array[i].isEmpty){
+				contador++;
+			}else{
 				continue;
 			}
 			acumulador = acumulador + array[i].salario;
 		}
-		retorno = (float) acumulador / contadorEmpleados;
+		retorno = (float) acumulador / contador;
 	}
 	return retorno;
 }
 
-int emp_superaPromedio(Empleado *array, int limite, int contadorEmpleados) {
+int emp_superaPromedio(Empleado *array, int limite) {
 	int retorno = -1;
 	int respuesta;
 	int contador = 0;
 	if (array != NULL && limite > 0) {
-		respuesta = emp_calcularPromedio(array, limite, contadorEmpleados);
+		respuesta = emp_calcularPromedio(array, limite);
 		for (int i = 0; i < limite; i++) {
 			if (array[i].isEmpty)
 				continue;

@@ -112,8 +112,8 @@ void menu() {
 						break;
 					case 2:
 						//opcion 2
-						respuestaPromedios = emp_calcularPromedio(arrayEmpleado, CANTIDAD_EMPLEADOS, contadorIds);
-						respuestaSuperaPromedio = emp_superaPromedio( arrayEmpleado, CANTIDAD_EMPLEADOS, contadorIds);
+						respuestaPromedios = emp_calcularPromedio(arrayEmpleado, CANTIDAD_EMPLEADOS);
+						respuestaSuperaPromedio = emp_superaPromedio( arrayEmpleado, CANTIDAD_EMPLEADOS);
 						if (respuestaPromedios > 0
 								&& respuestaSuperaPromedio != -1) {
 							printf(
