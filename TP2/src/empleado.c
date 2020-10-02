@@ -70,23 +70,23 @@ int emp_encontrarIndiceVacio(Empleado *array, int longitud) {
 
 int emp_cargarArray(Empleado *array, int longitud, int indice, int *id) {
 	int retorno = -1;
-	Empleado variableProducto;
+	Empleado auxiliarEmpleado;
 
 	if (longitud > 0 && array != NULL && indice < longitud) {
-		if (utn_getNombre(variableProducto.nombre, NOMBRE_LEN,
+		if (utn_getNombre(auxiliarEmpleado.nombre, NOMBRE_LEN,
 				"\nIngrese nombre del empleado:", "\nError", 3) == 0
-				&& utn_getNombre(variableProducto.apellido, NOMBRE_LEN,
+				&& utn_getNombre(auxiliarEmpleado.apellido, NOMBRE_LEN,
 						"\nIngrese apellido del empleado: ",
 						"\nError, reingrese", 3) == 0
-				&& utn_getNumeroFlotante(&variableProducto.salario,
+				&& utn_getNumeroFlotante(&auxiliarEmpleado.salario,
 						"\nIngrese salario del empleado:", "\nError", 10000,
 						100000, 3) == 0
-				&& utn_getNumero(&variableProducto.sector,
+				&& utn_getNumero(&auxiliarEmpleado.sector,
 						"\nIngrese sector del empleado", "\nError, reingrese",
 						1, 10, 3) == 0) {
 
-			variableProducto.isEmpty = 0;
-			array[indice] = variableProducto;
+			auxiliarEmpleado.isEmpty = 0;
+			array[indice] = auxiliarEmpleado;
 			array[indice].id = *id;
 			(*id)++;
 			retorno = 0;
