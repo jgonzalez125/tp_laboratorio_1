@@ -75,6 +75,9 @@ int utn_getEmail(char* pResultado, int longitud, char* mensaje, char* mensajeErr
  */
 int utn_getCuil(char* pResultado, int longitud, char* mensaje, char* mensajeError, int reintentos);
 
+
+/* ======================= FUNCIONES DE ARRAYS =======================  */
+
 /**
  * \brief Funcion para imprimir un array de int
  * \param int* array puntero a la direccion de memoria de un array de int

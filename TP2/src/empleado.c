@@ -7,9 +7,23 @@
 #include "empleado.h"
 
 #include <stdio.h>
+#include <ctype.h>
 #include <string.h>
 #include <stdlib.h>
 #include "utn.h"
+
+
+/**
+ * \brief Funcion que convierte un array de caracteres a mayuscula
+ *        comparando iterativamente caracter por caracter chequeando si
+ *        son mayor o igual a el valor ASCII de 'a' y menor o igual a el valor
+ *		  ASCII de 'z'
+ *
+ * \param char* array array de caracteres a ser convertido a mayuscula
+ *
+ * \return retorna el array convertido
+ */
+static char* convertirAmayuscula(char* array);
 
 int emp_imprimir(Empleado *array) {
 	int retorno = -1;
@@ -70,26 +84,30 @@ int emp_encontrarIndiceVacio(Empleado *array, int longitud) {
 
 int emp_cargarArray(Empleado *array, int longitud, int indice, int *id) {
 	int retorno = -1;
-	Empleado auxiliarEmpleado;
+	Empleado variableProducto;
 
 	if (longitud > 0 && array != NULL && indice < longitud) {
-		if (utn_getNombre(auxiliarEmpleado.nombre, NOMBRE_LEN,
-				"\nIngrese nombre del empleado:", "\nError", 3) == 0
-				&& utn_getNombre(auxiliarEmpleado.apellido, NOMBRE_LEN,
+		if (utn_getNombre(variableProducto.nombre, NOMBRE_LEN,
+				"\nIngrese nombre del empleado:", "\nError, reingrese", 3) == 0
+				&& utn_getNombre(variableProducto.apellido, NOMBRE_LEN,
 						"\nIngrese apellido del empleado: ",
 						"\nError, reingrese", 3) == 0
-				&& utn_getNumeroFlotante(&auxiliarEmpleado.salario,
-						"\nIngrese salario del empleado:", "\nError", 10000,
+				&& utn_getNumeroFlotante(&variableProducto.salario,
+						"\nIngrese salario del empleado:", "\nError, de 10000 a 100000", 10000,
 						100000, 3) == 0
-				&& utn_getNumero(&auxiliarEmpleado.sector,
-						"\nIngrese sector del empleado", "\nError, reingrese",
+				&& utn_getNumero(&variableProducto.sector,
+						"\nIngrese sector del empleado", "\nError, de 1 al 10",
 						1, 10, 3) == 0) {
 
-			auxiliarEmpleado.isEmpty = 0;
-			array[indice] = auxiliarEmpleado;
-			array[indice].id = *id;
-			(*id)++;
-			retorno = 0;
+			variableProducto.isEmpty = 0;
+			array[indice] = variableProducto;
+			if(convertirAmayuscula(array[indice].apellido) != NULL &&
+				convertirAmayuscula(array[indice].nombre) != NULL){
+				array[indice].id = *id;
+				(*id)++;
+				retorno = 0;
+			}
+
 		}
 
 	}
@@ -138,29 +156,38 @@ int emp_modificarArray(Empleado *array, int longitud, int indice) {
 			printf("\nCliente a ser modificado: ");
 			emp_imprimir(&array[indice]);
 			if (!utn_getNumero(&opcion,
-					"\nQue campo desea modificar? \n1)Nombre\n2)Salario\n3)Apellido\n4)Sector\n5)No modificar",
-					"\nError, reingrese", 1, 5, 3)) {
+					"\nQue campo desea modificar? "
+					   "\n1)Nombre"
+					   "\n2)Apellido"
+					   "\n3)Salario"
+					   "\n4)Sector"
+					   "\n5)No modificar",
+					   "\nError, reingrese", 1, 5, 3)) {
 				switch (opcion) {
 				case 1:
 					if (!utn_getNombre(auxCliente.nombre, NOMBRE_LEN,
-							"\nModifique nombre del empleado:", "\nError", 3)) {
-						printf("Nombre modificado exitosamente");
+							"\nModifique nombre del empleado:", "\nError, reingrese", 3)) {
 						strncpy(array[indice].nombre, auxCliente.nombre,
 								NOMBRE_LEN);
+						if(convertirAmayuscula(array[indice].nombre) != NULL){
+							printf("Nombre modificado exitosamente");
+						}
 					}
 					break;
 				case 2:
 					if (!utn_getNombre(auxCliente.apellido, NOMBRE_LEN,
-							"\nModifique apellido del empleado:", "\nError",
+							"\nModifique apellido del empleado:", "\nError, reingrese",
 							3)) {
-						printf("Apellido modificado exitosamente");
 						strncpy(array[indice].apellido, auxCliente.apellido,
 								NOMBRE_LEN);
+						if(convertirAmayuscula(array[indice].apellido) != NULL){
+							printf("Apellido modificado exitosamente");
+						}
 					}
 					break;
 				case 3:
 					if (!utn_getNumeroFlotante(&auxCliente.salario,
-							"\nModifique salario del empleado:", "\nError",
+							"\nModifique salario del empleado:", "\nError, salario maximo 100000 (cien mil)",
 							10000, 1000000, 3)) {
 						printf("Salario modificado exitosamente");
 						array[indice].salario = auxCliente.salario;
@@ -168,7 +195,7 @@ int emp_modificarArray(Empleado *array, int longitud, int indice) {
 					break;
 				case 4:
 					if (!utn_getNumero(&auxCliente.sector,
-							"\nModifique sector del empleado:", "\nError", 1,
+							"\nModifique sector del empleado:", "\nError, del 1 al 10", 1,
 							10, 3)) {
 						printf("Sector modificado exitosamente");
 						array[indice].sector = auxCliente.sector;
@@ -184,7 +211,19 @@ int emp_modificarArray(Empleado *array, int longitud, int indice) {
 	return retorno;
 }
 
-int emp_ordenarPorApellidoSector(Empleado *array, int limite) {
+char* convertirAmayuscula(char *array) {
+	int i;
+	if (array != NULL) {
+		for (i = 0; array[i] != '\0'; i++) {
+			if (array[i] >= 'a' && array[i] <= 'z') {
+				array[i] = array[i] - 32;
+			}
+		}
+	}
+	return array;
+}
+
+int emp_ordenarPorApellidoSectorMenorAmayor(Empleado *array, int limite) {
 	int retorno = -1;
 	int i;
 	int j;
@@ -193,13 +232,12 @@ int emp_ordenarPorApellidoSector(Empleado *array, int limite) {
 	if (array != NULL && limite > 0) {
 		for (i = 0; i < limite - 1; i++) {
 			for (j = i + 1; j < limite; j++) {
-				int auxCmp = strncmp(array[i].apellido, array[j].apellido,
-						NOMBRE_LEN);
-				if (array[i].isEmpty == 1 || array[i + 1].isEmpty == 1) {
+
+				int auxCmp = strncmp(array[i].apellido, array[j].apellido, NOMBRE_LEN);
+				if (array[i].isEmpty == 1 || array[j].isEmpty == 1) {
 					continue;
 				}
-				if (auxCmp < 0
-						|| (auxCmp == 0 && array[i].sector < array[j].sector)) {
+				if (auxCmp > 0 || (auxCmp == 0 && array[i].sector > array[j].sector)) {
 					auxCliente = array[i];
 					array[i] = array[j];
 					array[j] = auxCliente;
@@ -216,7 +254,7 @@ int emp_buscarId(Empleado *array, int limite, int idBuscado) {
 
 	if (array != NULL && limite > 0) {
 		for (int i = 0; i < limite; i++) {
-			if (array[i].id == idBuscado) {
+			if (array[i].id == idBuscado && !array[i].isEmpty) {
 				retorno = i;
 				break;
 			}

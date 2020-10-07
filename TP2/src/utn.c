@@ -307,7 +307,7 @@ static int esNombre(char* cadena, int longitud){
 
 	if(cadena != NULL && longitud > 0){
 		for(i=0; cadena[i] != '\0' && i < longitud; i++){
-			if((cadena[i] < 'A' || cadena[i] > 'Z') && (cadena[i] < 'a' || cadena[i] > 'z') && cadena[i] != ' '){
+			if((cadena[i] < 'A' || cadena[i] > 'Z') && (cadena[i] < 'a' || cadena[i] > 'z')){
 				retorno = 0;
 				break;
 			}
@@ -322,8 +322,11 @@ static int getNombre(char* pResultado, int longitud){
 
 	if(pResultado != NULL){
 		if(getString(buffer, sizeof(buffer)) == 0 && esNombre(buffer, sizeof(buffer)) && strnlen(buffer,sizeof(buffer)) < longitud && buffer[0] != '\0'){
-			strncpy(pResultado, buffer, longitud);
-			retorno = 0;
+			for(int i = 0; i < longitud; i++){
+				strncpy(pResultado, buffer, longitud);
+				retorno = 0;
+			}
+
 		}
 	}
 	return retorno;
