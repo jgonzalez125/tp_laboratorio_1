@@ -39,6 +39,7 @@ int main(void) {
     int cargoDeTexto = 0;
     int dioDeAlta = 0;
     int cargoDeBinario = 0;
+    int guardoBinario = 0;
 
     if(listaEmpleados != NULL){
 	  do{
@@ -71,11 +72,12 @@ int main(void) {
 						if(!cargoDeTexto){
 							printf("\nDebe cargar de texto");
 						}else{
-							if(!cargoDeBinario){
-								controller_loadFromBinary("data.bin",listaEmpleados);
-								cargoDeBinario = 1;
+							if(!cargoDeBinario && guardoBinario){
+								if(!controller_loadFromBinary("data.bin",listaEmpleados)){
+									cargoDeBinario = 1;
+								}
 							}else{
-								printf("\nNo puede cargar nuevamente");
+								printf("\nError al cargar");
 							}
 						}
 						break;
@@ -93,7 +95,7 @@ int main(void) {
 					case 4:
 						//Debe cargar de texto para editar empleados
 						if(!cargoDeTexto){
-							printf("\nDebe cargar del texto");
+							printf("\nDebe cargar del texto para editar empleados");
 						}else{
 							controller_editEmployee(listaEmpleados);
 						}
@@ -101,7 +103,7 @@ int main(void) {
 					case 5:
 						//Debe cargar de texto para eliminar empleados
 						if(!cargoDeTexto) {
-							printf("\nDebe cargar del texto");
+							printf("\nDebe cargar del texto para eliminar empleados");
 						} else {
 							controller_removeEmployee(listaEmpleados);
 						}
@@ -109,7 +111,7 @@ int main(void) {
 					case 6:
 						//Debe cargar de texto para listar empleados
 						if(!cargoDeTexto) {
-							printf("\nDebe cargar del texto");
+							printf("\nDebe cargar del texto para listar empleados");
 						} else {
 							controller_ListEmployee(listaEmpleados);
 						}
@@ -133,6 +135,7 @@ int main(void) {
 							printf("\nDebe cargar del texto");
 						} else {
 							controller_saveAsBinary("data.bin", listaEmpleados);
+							guardoBinario = 1;
 						}
 						break;
 					default:

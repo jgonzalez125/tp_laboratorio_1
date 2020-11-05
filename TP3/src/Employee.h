@@ -161,6 +161,12 @@ int empleado_getEmptyIndexPunteros(Employee** array, int longitud);
  */
 int empleado_cargarArrayPunteros(Employee** array, int longitud, int indice, int* id);
 
+/*
+ * Setters y getters
+ *
+ * Modifican y obtienen (respectivamente) los datos indicados en el nombre de cada funcion
+ */
+
 int empleado_setIdTxt(Employee* this,char* id);
 int empleado_setIdInt(Employee* this,int id);
 int empleado_getIdInt(Employee* this,int* id);

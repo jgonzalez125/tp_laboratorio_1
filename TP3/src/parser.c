@@ -16,7 +16,6 @@ int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
 	int retorno = -1;
 	Employee* fileEmployee = NULL;
 	char buffer[4][20];
-	pFile = fopen("data.csv","r");
 
 	fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",buffer[0],buffer[1],buffer[2],buffer[3]);
 	if(pFile != NULL && pArrayListEmployee != NULL){
@@ -30,6 +29,7 @@ int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
 				}
 			}
 		}while(!feof(pFile));
+		fclose(pFile);
 	}
     return retorno;
 }
@@ -50,6 +50,11 @@ int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
 		while(!feof(pFile)){
 			resultado = fread(auxEmployee, sizeof(auxEmployee), 1, pFile);
 			auxEmployee = empleado_new();
+			if(auxEmployee != NULL){
+				ll_add(pArrayListEmployee, auxEmployee);
+			}else{
+				empleado_delete(auxEmployee);
+			}
 			if (resultado < 1) {
 				if (feof(pFile)) {
 					break;
@@ -58,14 +63,9 @@ int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
 					break;
 				}
 			}
-			if(auxEmployee != NULL){
-				ll_add(pArrayListEmployee, auxEmployee);
-				retorno = 0;
-			}else{
-				empleado_delete(auxEmployee);
-			}
-
 		}
+		fclose(pFile);
+		retorno = 0;
 	}
     return retorno;
 }

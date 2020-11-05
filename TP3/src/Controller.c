@@ -70,11 +70,10 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
 	FILE *pFile;
 
 	if (path != NULL && pArrayListEmployee != NULL) {
-		pFile = fopen(path, "rb");
+		pFile = fopen(path, "wb");
 		if (pFile != NULL) {
 			if (!parser_EmployeeFromBinary(pFile, pArrayListEmployee)) {
 				printf("\nLeido exitosamente\n");
-				fclose(pFile);
 				retorno = 0;
 			} else {
 				printf("\nError, no se pudo cargar");
@@ -340,19 +339,20 @@ int controller_saveAsBinary(char *path, LinkedList *pArrayListEmployee) {
 	Employee *binaryEmployee;
 	int i;
 
-	if (path != NULL && pArrayListEmployee != NULL && ll_len(pArrayListEmployee)) {
-			if ((pFile = fopen(path, "wb")) != NULL) {
-				printf("\nAbierto Exitosamente");
-				for (i = 0; i < ll_len(pArrayListEmployee); i++) {
-					binaryEmployee = ll_get(pArrayListEmployee, i);
-					if (binaryEmployee != NULL) {
-						fwrite(binaryEmployee, sizeof(Employee), 1, pFile);
-						retorno = 0;
-					}
+	if (path != NULL && pArrayListEmployee != NULL
+			&& ll_len(pArrayListEmployee)) {
+		pFile = fopen(path, "wb");
+		if (pFile != NULL) {
+			printf("\nAbierto Exitosamente");
+			for (i = 0; i < ll_len(pArrayListEmployee); i++) {
+				binaryEmployee = ll_get(pArrayListEmployee, i);
+				if (binaryEmployee != NULL) {
+					fwrite(binaryEmployee, sizeof(Employee), 1, pFile);
+					retorno = 0;
 				}
-				fclose(pFile);
 			}
-		printf("\nDatos .bin guardados");
+			fclose(pFile);
+		}
 	} else {
 		printf("\nNo se pudo guardar");
 	}
