@@ -7,7 +7,6 @@
 #define NOMBRE_TAM 25
 
 
-
 /** \brief Listar empleados
  *
  * \param path char*

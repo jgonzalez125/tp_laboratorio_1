@@ -60,7 +60,7 @@ int main(void) {
 						if(cargoDeTexto == 1){
 							printf("\nNo puede cargar nuevamente");
 						}else{
-							if(!controller_loadFromText("../data.csv",listaEmpleados)){
+							if(!controller_loadFromText("data.csv",listaEmpleados)){
 								cargoDeTexto = 1;
 							}
 						}
@@ -72,7 +72,7 @@ int main(void) {
 							printf("\nDebe cargar de texto");
 						}else{
 							if(!cargoDeBinario){
-								controller_loadFromBinary("../data.bin",listaEmpleados);
+								controller_loadFromBinary("data.bin",listaEmpleados);
 								cargoDeBinario = 1;
 							}else{
 								printf("\nNo puede cargar nuevamente");
@@ -136,7 +136,9 @@ int main(void) {
 						}
 						break;
 					default:
-						printf("\nSaliendo...");
+						if(!ll_deleteLinkedList(listaEmpleados)){
+							printf("\nSaliendo...");
+						}
 						break;
 				}
 			}
